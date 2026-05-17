@@ -30,3 +30,7 @@ class MoodNotifier extends Notifier<List<MoodEntry>> {
     state = entries.take(7).toList();
   }
 }
+
+final moodNotifierProvider = NotifierProvider<MoodNotifier, List<MoodEntry>>(
+  MoodNotifier.new,
+);
