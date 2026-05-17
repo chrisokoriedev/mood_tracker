@@ -17,9 +17,15 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: HomePage(),
+    return ScreenUtilInit(
+         designSize: const Size(360, 690),
+      minTextAdapt: true,
+      builder: (_,child) {
+        return const MaterialApp(
+          debugShowCheckedModeBanner: false,
+          home: HomePage(),
+        );
+      }
     );
   }
 }

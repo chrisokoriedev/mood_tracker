@@ -17,7 +17,22 @@ class HomePage extends StatelessWidget {
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [const EmptyState()],
+        children: [
+          const KMoodText(
+            'How are you feeling today?',
+            variant: MoodTextVariant.header,
+          ),
+          const SizedBox(height: 6),
+          KMoodText(
+            'Pick one mood to log your current state.',
+            variant: MoodTextVariant.small,
+            style: Theme.of(
+              context,
+            ).textTheme.bodySmall?.copyWith(color: Colors.black54),
+          ),
+
+          const EmptyState(),
+        ],
       ),
     );
   }
