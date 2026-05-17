@@ -10,13 +10,15 @@ class Panel extends StatelessWidget {
   const Panel({
     super.key,
     required this.child,
-    required this.activeMood,
-    required this.entries,
+    this.activeMood,
+    this.entries,
+    this.removeHeader = false,
   });
 
   final Widget child;
-  final MoodType activeMood;
-  final List<MoodEntry> entries;
+  final MoodType? activeMood;
+  final List<MoodEntry>? entries;
+  final bool? removeHeader;
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +40,7 @@ class Panel extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
+          if (removeHeader != true)
           Row(
             children: [
               const KMoodText(
@@ -52,14 +55,18 @@ class Panel extends StatelessWidget {
                   vertical: 6.spMin,
                 ),
                 decoration: BoxDecoration(
-                  color: activeMood.color.withValues(alpha: 0.18),
+                  color:
+                      activeMood?.color.withValues(alpha: 0.18) ??
+                      AppColors.black.withValues(alpha: 0.18),
                   borderRadius: BorderRadius.circular(999),
                   border: Border.all(
-                    color: activeMood.color.withValues(alpha: 0.45),
+                    color:
+                        activeMood?.color.withValues(alpha: 0.45) ??
+                        AppColors.black.withValues(alpha: 0.45),
                   ),
                 ),
                 child: KMoodText(
-                  '${entries.length}/7',
+                  '${entries?.length ?? 0}/7',
                   variant: MoodTextVariant.small,
                   style: const TextStyle(fontWeight: FontWeight.w700),
                 ),

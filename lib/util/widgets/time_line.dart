@@ -21,6 +21,7 @@ class Timeline extends ConsumerWidget {
     return SizedBox(
       height: 80.h,
       child: ListView.separated(
+        physics: const BouncingScrollPhysics(),
         scrollDirection: Axis.horizontal,
         itemCount: entries.length,
         separatorBuilder: (_, _) => SizedBox(width: 12.w),
