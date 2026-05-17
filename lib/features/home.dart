@@ -1,3 +1,4 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -26,7 +27,13 @@ class HomePage extends ConsumerWidget {
       appBar: AppBar(
         centerTitle: true,
         elevation: 0,
-        backgroundColor: Colors.transparent,
+        backgroundColor: AppColors.white.withValues(alpha: 0.12),
+        flexibleSpace: ClipRect(
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
+            child: Container(color: Colors.transparent),
+          ),
+        ),
         title: const KMoodText(
           AppStrings.appName,
           variant: MoodTextVariant.header,
@@ -143,15 +150,15 @@ class HomePage extends ConsumerWidget {
                           fontSize: 40.sp,
                         ),
                       ),
-                      2.verticalSpace,
+                      5.verticalSpace,
                       KMoodText(
                         entries.isEmpty
                             ? AppStrings.tapMoodToStart
-                            : AppStrings.latestCheckInIsActive.toUpperCase(),
+                            : activeMood.supportiveMessage.toUpperCase(),
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
                           color: AppColors.black54,
-                          letterSpacing: 0.7,
-                          fontSize: 15.spMin,
+                          letterSpacing: 0.2,
+                          fontSize: 16.spMin,
                           fontWeight: FontWeight.w600,
                         ),
                         textAlign: TextAlign.center,

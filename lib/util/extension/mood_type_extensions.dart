@@ -49,4 +49,19 @@ extension MoodTypeX on MoodType {
         return AppColors.anxious;
     }
   }
+
+  String get supportiveMessage {
+    switch (this) {
+      case MoodType.happy:
+        return 'Keep riding this wave of positivity! Share a smile today. 😊';
+      case MoodType.neutral:
+        return 'A calm day is a beautiful day. Take it easy and just be. 🍃';
+      case MoodType.sad:
+        return "It's completely okay to not be okay. Be gentle with yourself. 🤍";
+      case MoodType.excited:
+        return "Love this vibrant energy! What's making you sparkle today? ✨";
+      case MoodType.anxious:
+        return "Take a slow, deep breath in... and let it go. You've got this. 🫂";
+    }
+  }
 }
