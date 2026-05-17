@@ -26,14 +26,15 @@ class Timeline extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final animatingId = ref.watch(animationNotifierProvider);
-    final activeMood = entries.isNotEmpty ? entries.first.mood : MoodType.neutral;
+    final activeMood = entries.isNotEmpty
+        ? entries.first.mood
+        : MoodType.neutral;
 
     return SizedBox(
       height: 88.h,
       child: Stack(
         alignment: Alignment.center,
         children: [
-          // Subtle horizontal connecting thread line in the background
           Positioned(
             left: 24.w,
             right: 24.w,
@@ -52,9 +53,8 @@ class Timeline extends ConsumerWidget {
           ListView.separated(
             physics: const BouncingScrollPhysics(),
             scrollDirection: Axis.horizontal,
-            clipBehavior: Clip.none,
             itemCount: entries.length,
-            separatorBuilder: (_, _) => SizedBox(width: 14.w),
+            separatorBuilder: (_, _) => SizedBox(width: 10.spMin),
             itemBuilder: (context, index) {
               final entry = entries[index];
               final isAnimating = animatingId == entry.id;
@@ -67,7 +67,7 @@ class Timeline extends ConsumerWidget {
                         ..rotateZ(0.012))
                     : Matrix4.identity(),
                 transformAlignment: Alignment.center,
-                width: 210.w,
+                width: 300.spMin,
                 margin: EdgeInsets.symmetric(vertical: 6.h),
                 padding: EdgeInsets.all(10.spMin),
                 decoration: BoxDecoration(
@@ -115,7 +115,9 @@ class Timeline extends ConsumerWidget {
                                   vertical: 2.h,
                                 ),
                                 decoration: BoxDecoration(
-                                  color: entry.mood.color.withValues(alpha: 0.12),
+                                  color: entry.mood.color.withValues(
+                                    alpha: 0.12,
+                                  ),
                                   borderRadius: BorderRadius.circular(6.r),
                                 ),
                                 child: KMoodText(
@@ -124,7 +126,9 @@ class Timeline extends ConsumerWidget {
                                   style: TextStyle(
                                     fontSize: 8.5.spMin,
                                     fontWeight: FontWeight.w700,
-                                    color: entry.mood.color.withValues(alpha: 0.85),
+                                    color: entry.mood.color.withValues(
+                                      alpha: 0.85,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -132,13 +136,16 @@ class Timeline extends ConsumerWidget {
                           ),
                           4.verticalSpace,
                           KMoodText(
-                            DateFormat('EEE, MMM d • h:mm a').format(entry.date),
+                            DateFormat(
+                              'EEE, MMM d • h:mm a',
+                            ).format(entry.date),
                             variant: MoodTextVariant.small,
-                            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                              color: AppColors.black54,
-                              fontSize: 10.spMin,
-                              fontWeight: FontWeight.w500,
-                            ),
+                            style: Theme.of(context).textTheme.bodySmall
+                                ?.copyWith(
+                                  color: AppColors.black54,
+                                  fontSize: 10.spMin,
+                                  fontWeight: FontWeight.w500,
+                                ),
                           ),
                         ],
                       ),

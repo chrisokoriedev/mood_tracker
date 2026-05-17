@@ -23,9 +23,9 @@ class MoodSelector extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           clipBehavior: Clip.none,
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             mainAxisSize: MainAxisSize.min,
-            spacing: 16.w,
+            spacing: 16.spMin,
             children: MoodType.values.map((mood) {
               final isSelected = mood == selectedMood;
               return InkWell(
@@ -38,14 +38,14 @@ class MoodSelector extends StatelessWidget {
                   child: AnimatedContainer(
                     duration: const Duration(milliseconds: 280),
                     curve: Curves.easeOutCubic,
-                    width: 50.r,
-                    height: 50.r,
+                    width: 50.spMin,
+                    height: 50.spMin,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: isSelected ? mood.color : const Color(0xFFF1F5F9),
                       border: Border.all(
                         color: isSelected ? Colors.white : Colors.transparent,
-                        width: 3.r,
+                        width: 3.spMin,
                       ),
                       boxShadow: isSelected
                           ? [
@@ -61,7 +61,7 @@ class MoodSelector extends StatelessWidget {
                     child: Center(
                       child: MoodFaceWidget(
                         mood: mood,
-                        size: 36.sp,
+                        size: 36.spMin,
                         faceColor: Colors.transparent,
                         strokeColor: isSelected
                             ? const Color(0xFF0F172A)

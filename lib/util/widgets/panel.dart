@@ -29,7 +29,7 @@ class Panel extends StatelessWidget {
         filter: ImageFilter.blur(sigmaX: 14, sigmaY: 14),
         child: Container(
           width: double.infinity,
-          padding: EdgeInsets.only(left: 12.sp, right: 12.sp, top: 12.sp),
+          padding: EdgeInsets.only(left: 12.spMin, right: 12.spMin, top: 12.spMin),
           decoration: BoxDecoration(
             color: AppColors.white.withValues(alpha: 0.65),
             borderRadius: BorderRadius.circular(10.r),

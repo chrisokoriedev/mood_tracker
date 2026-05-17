@@ -36,8 +36,8 @@ class HomePage extends ConsumerWidget {
           Padding(
             padding: EdgeInsets.only(right: 14.w),
             child: Container(
-              width: 26.r,
-              height: 26.r,
+              width: 26.spMin,
+              height: 26.spMin,
               decoration: BoxDecoration(
                 color: AppColors.white.withValues(alpha: 0.85),
                 shape: BoxShape.circle,
@@ -99,12 +99,12 @@ class HomePage extends ConsumerWidget {
                   curve: Curves.easeOut,
                   width: double.infinity,
                   padding: EdgeInsets.symmetric(
-                    horizontal: 16.w,
-                    vertical: 18.h,
+                    horizontal: 16.spMin,
+                    vertical: 18.spMin,
                   ),
                   decoration: BoxDecoration(
                     color: AppColors.white,
-                    borderRadius: BorderRadius.circular(18.r),
+                    borderRadius: BorderRadius.circular(18.spMin),
                     border: Border.all(
                       color: activeMood.color.withValues(alpha: 0.55),
                     ),
@@ -139,7 +139,7 @@ class HomePage extends ConsumerWidget {
                         activeMood.label,
                         style: TextStyle(
                           fontWeight: FontWeight.w800,
-                          fontSize: 40.sp,
+                          fontSize: 40.spMin,
                         ),
                       ),
                       5.verticalSpace,
