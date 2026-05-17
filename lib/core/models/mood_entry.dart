@@ -14,4 +14,3 @@ class MoodEntry {
   MoodEntry({required this.id, required this.mood, required this.date});
 }
 
-enum MoodType { happy, neutral, sad, excited, anxious }

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:mood_tracker/core/contants/app_strings.dart';
+import 'package:mood_tracker/core/models/mood_entry.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
-  Hive.registerAdapter();
-  Hive.registerAdapter();
-  await Hive.openBox(AppStrings.hiveBox);
+  Hive.registerAdapter(MoodEntryAdapter());
+  await Hive.openBox<MoodEntry>(AppStrings.hiveBox);
   runApp(const MainApp());
 }
 
