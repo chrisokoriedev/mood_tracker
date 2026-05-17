@@ -23,6 +23,7 @@ class MainApp extends StatelessWidget {
       minTextAdapt: true,
       builder: (_, child) {
         return const MaterialApp(
+          themeMode: ThemeMode.dark,
           debugShowCheckedModeBanner: false,
           home: HomePage(),
         );
