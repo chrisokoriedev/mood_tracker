@@ -19,7 +19,7 @@ class Timeline extends ConsumerWidget {
     final animatingId = ref.watch(animationNotifierProvider);
 
     return SizedBox(
-      height: 132.h,
+      height: 80.h,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         itemCount: entries.length,
@@ -27,85 +27,74 @@ class Timeline extends ConsumerWidget {
         itemBuilder: (context, index) {
           final entry = entries[index];
           final isAnimating = animatingId == entry.id;
-          return InkWell(
-            borderRadius: BorderRadius.circular(12.r),
-            onTap: () {
-              ref.read(animationNotifierProvider.notifier).triggerAnimation(entry.id);
-            },
-            child: AnimatedContainer(
-              duration: const Duration(milliseconds: 280),
-              curve: Curves.easeOutCubic,
-              transform: isAnimating
-                  ? (Matrix4.identity()
+          return AnimatedContainer(
+            duration: const Duration(milliseconds: 280),
+            curve: Curves.easeOutCubic,
+            transform: isAnimating
+                ? (Matrix4.identity()
                     ..scaleByDouble(1.05, 1.05, 1.0, 1.0)
                     ..rotateZ(0.015))
-                  : Matrix4.identity(),
-              transformAlignment: Alignment.center,
-              width: 222.w,
-              margin: EdgeInsets.symmetric(vertical: 6.h),
-              padding: EdgeInsets.all(12.spMin),
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [
-                    entry.mood.color.withValues(alpha: 0.18),
-                    entry.mood.color.withValues(alpha: 0.08),
-                  ],
+                : Matrix4.identity(),
+            transformAlignment: Alignment.center,
+            width: 222.w,
+            margin: EdgeInsets.symmetric(vertical: 6.h),
+            padding: EdgeInsets.all(12.spMin),
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  entry.mood.color.withValues(alpha: 0.18),
+                  entry.mood.color.withValues(alpha: 0.08),
+                ],
+              ),
+              borderRadius: BorderRadius.circular(14.r),
+              border: Border.all(
+                color: entry.mood.color.withValues(alpha: 0.65),
+                width: 1.4,
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: entry.mood.color.withValues(alpha: 0.18),
+                  blurRadius: 12,
+                  offset: const Offset(0, 5),
                 ),
-                borderRadius: BorderRadius.circular(14.r),
-                border: Border.all(color: entry.mood.color.withValues(alpha: 0.65), width: 1.4),
-                boxShadow: [
-                  BoxShadow(
-                    color: entry.mood.color.withValues(alpha: 0.18),
-                    blurRadius: 12,
-                    offset: const Offset(0, 5),
-                  ),
-                ],
-              ),
-              child: Row(
-                children: [
-                  MoodFaceWidget(
-                    mood: entry.mood,
-                    size: 48.spMin,
-                    faceColor: entry.mood.color.withValues(alpha: 0.34),
-                  ),
-                  12.horizontalSpace,
-                  Expanded(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        KMoodText(
-                          entry.mood.label,
-                          variant: MoodTextVariant.normal,
-                          style: const TextStyle(
-                            fontWeight: FontWeight.w800,
-                            letterSpacing: 0.2,
-                          ),
+              ],
+            ),
+            child: Row(
+              children: [
+                MoodFaceWidget(
+                  mood: entry.mood,
+                  size: 48.spMin,
+                  faceColor: entry.mood.color.withValues(alpha: 0.34),
+                ),
+                12.horizontalSpace,
+                Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      KMoodText(
+                        entry.mood.label,
+                        variant: MoodTextVariant.normal,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.w800,
+                          letterSpacing: 0.2,
                         ),
-                        6.verticalSpace,
-                        KMoodText(
-                          DateFormat('EEE, MMM d • h:mm a').format(entry.date),
-                          variant: MoodTextVariant.small,
-                          style: Theme.of(
-                            context,
-                          ).textTheme.bodySmall?.copyWith(
-                            color: AppColors.black54,
-                            fontWeight: FontWeight.w500,
-                          ),
+                      ),
+                      6.verticalSpace,
+                      KMoodText(
+                        DateFormat('EEE, MMM d • h:mm a').format(entry.date),
+                        variant: MoodTextVariant.small,
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: AppColors.black54,
+                          fontWeight: FontWeight.w500,
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                  if (isAnimating)
-                    SizedBox(
-                      width: 24.w,
-                      height: 24.w,
-                      child: const CircularProgressIndicator(strokeWidth: 2),
-                    ),
-                ],
-              ),
+                ),
+              ],
             ),
           );
         },

@@ -1,10 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mood_tracker/core/contants/app_colors.dart';
+import 'package:mood_tracker/core/models/mood_entry.dart';
+import 'package:mood_tracker/core/models/mood_type.dart';
+import 'package:mood_tracker/util/extension/mood_type_extensions.dart';
+import 'package:mood_tracker/util/widgets/mood_app_text.dart';
 
 class Panel extends StatelessWidget {
-  const Panel({super.key, required this.child});
+  const Panel({
+    super.key,
+    required this.child,
+    required this.activeMood,
+    required this.entries,
+  });
 
   final Widget child;
+  final MoodType activeMood;
+  final List<MoodEntry> entries;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +35,40 @@ class Panel extends StatelessWidget {
           ),
         ],
       ),
-      child: child,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Row(
+            children: [
+              const KMoodText(
+                'Last 7 moods',
+                variant: MoodTextVariant.normal,
+                style: TextStyle(fontWeight: FontWeight.w800),
+              ),
+              const Spacer(),
+              Container(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 10.spMin,
+                  vertical: 6.spMin,
+                ),
+                decoration: BoxDecoration(
+                  color: activeMood.color.withValues(alpha: 0.18),
+                  borderRadius: BorderRadius.circular(999),
+                  border: Border.all(
+                    color: activeMood.color.withValues(alpha: 0.45),
+                  ),
+                ),
+                child: KMoodText(
+                  '${entries.length}/7',
+                  variant: MoodTextVariant.small,
+                  style: const TextStyle(fontWeight: FontWeight.w700),
+                ),
+              ),
+            ],
+          ),
+          child,
+        ],
+      ),
     );
   }
 }

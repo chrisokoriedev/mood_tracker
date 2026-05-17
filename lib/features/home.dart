@@ -9,7 +9,6 @@ import 'package:mood_tracker/util/extension/mood_type_extensions.dart';
 import 'package:mood_tracker/util/widgets/empty_state.dart';
 import 'package:mood_tracker/util/widgets/mood_face_widget.dart';
 import 'package:mood_tracker/util/widgets/mood_app_text.dart';
-import 'package:mood_tracker/util/widgets/mood_selector.dart';
 import 'package:mood_tracker/util/widgets/panel.dart';
 import 'package:mood_tracker/util/widgets/time_line.dart';
 
@@ -41,7 +40,7 @@ class HomePage extends ConsumerWidget {
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-              activeMood.color.withValues(alpha: 0.28),
+              // activeMood.color.withValues(alpha: 0.28),
               activeMood.color.withValues(alpha: 0.08),
               AppColors.white,
             ],
@@ -71,7 +70,10 @@ class HomePage extends ConsumerWidget {
                   duration: const Duration(milliseconds: 320),
                   curve: Curves.easeOut,
                   width: double.infinity,
-                  padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 16.w,
+                    vertical: 14.h,
+                  ),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(18.r),
                     gradient: LinearGradient(
@@ -82,7 +84,9 @@ class HomePage extends ConsumerWidget {
                         activeMood.color.withValues(alpha: 0.14),
                       ],
                     ),
-                    border: Border.all(color: activeMood.color.withValues(alpha: 0.55)),
+                    border: Border.all(
+                      color: activeMood.color.withValues(alpha: 0.55),
+                    ),
                     boxShadow: [
                       BoxShadow(
                         color: activeMood.color.withValues(alpha: 0.22),
@@ -112,7 +116,9 @@ class HomePage extends ConsumerWidget {
                             KMoodText(
                               activeMood.label,
                               variant: MoodTextVariant.header,
-                              style: const TextStyle(fontWeight: FontWeight.w800),
+                              style: const TextStyle(
+                                fontWeight: FontWeight.w800,
+                              ),
                             ),
                             2.verticalSpace,
                             KMoodText(
@@ -120,9 +126,8 @@ class HomePage extends ConsumerWidget {
                                   ? 'Tap a mood to start tracking.'
                                   : 'Latest check-in is active.',
                               variant: MoodTextVariant.small,
-                              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                                color: AppColors.black54,
-                              ),
+                              style: Theme.of(context).textTheme.bodySmall
+                                  ?.copyWith(color: AppColors.black54),
                             ),
                           ],
                         ),
@@ -130,52 +135,18 @@ class HomePage extends ConsumerWidget {
                     ],
                   ),
                 ),
-                16.verticalSpace,
-                Panel(
-                  child: MoodSelector(
-                    selectedMood: activeMood,
-                    onSelect: (mood) {
-                      ref.read(moodNotifierProvider.notifier).addEntry(mood);
-                    },
-                  ),
-                ),
-                18.verticalSpace,
-                Row(
-                  children: [
-                    const KMoodText(
-                      'Last 7 moods',
-                      variant: MoodTextVariant.normal,
-                      style: TextStyle(fontWeight: FontWeight.w800),
-                    ),
-                    const Spacer(),
-                    Container(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 10.spMin,
-                        vertical: 6.spMin,
-                      ),
-                      decoration: BoxDecoration(
-                        color: activeMood.color.withValues(alpha: 0.18),
-                        borderRadius: BorderRadius.circular(999),
-                        border: Border.all(color: activeMood.color.withValues(alpha: 0.45)),
-                      ),
-                      child: KMoodText(
-                        '${entries.length}/7',
-                        variant: MoodTextVariant.small,
-                        style: const TextStyle(fontWeight: FontWeight.w700),
-                      ),
-                    ),
-                  ],
-                ),
-                12.verticalSpace,
-                Panel(
-                  child: entries.isEmpty
-                      ? const EmptyState()
-                      : Timeline(entries: entries),
-                ),
               ],
             ),
           ),
         ),
+      ),
+
+      bottomSheet: Panel(
+        activeMood: activeMood,
+        entries: entries,
+        child: entries.isEmpty
+            ? const EmptyState()
+            : Timeline(entries: entries),
       ),
     );
   }
