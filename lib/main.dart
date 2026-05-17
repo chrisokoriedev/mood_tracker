@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:mood_tracker/core/contants/app_strings.dart';
@@ -10,7 +11,7 @@ void main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(MoodEntryAdapter());
   await Hive.openBox<MoodEntry>(AppStrings.hiveBox);
-  runApp(const MainApp());
+  runApp(const ProviderScope(child: MainApp()));
 }
 
 class MainApp extends StatelessWidget {
