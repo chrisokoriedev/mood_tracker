@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mood_tracker/util/widgets/mood_app_text.dart';
 
 class EmptyState extends StatelessWidget {
   const EmptyState({super.key});
@@ -6,10 +7,34 @@ class EmptyState extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text(
-        'No mood entries yet.\nTap a mood above to log one.',
-        textAlign: TextAlign.center,
-        style: Theme.of(context).textTheme.bodyMedium,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            width: 56,
+            height: 56,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: Colors.black.withValues(alpha: 0.06),
+            ),
+            child: const Icon(Icons.mood_outlined, color: Colors.black54),
+          ),
+          const SizedBox(height: 12),
+          const KMoodText(
+            'No mood entries yet',
+            variant: MoodTextVariant.normal,
+            style: TextStyle(fontWeight: FontWeight.w700),
+          ),
+          const SizedBox(height: 4),
+          KMoodText(
+            'Tap a mood above to log one.',
+            variant: MoodTextVariant.small,
+            style: Theme.of(
+              context,
+            ).textTheme.bodySmall?.copyWith(color: Colors.black54),
+            textAlign: TextAlign.center,
+          ),
+        ],
       ),
     );
   }
