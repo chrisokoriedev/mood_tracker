@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:mood_tracker/core/contants/app_strings.dart';
 import 'package:mood_tracker/core/models/mood_entry.dart';
@@ -18,14 +19,14 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-         designSize: const Size(360, 690),
+      designSize: const Size(360, 690),
       minTextAdapt: true,
-      builder: (_,child) {
+      builder: (_, child) {
         return const MaterialApp(
           debugShowCheckedModeBanner: false,
           home: HomePage(),
         );
-      }
+      },
     );
   }
 }

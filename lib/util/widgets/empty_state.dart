@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mood_tracker/core/contants/app_strings.dart';
 import 'package:mood_tracker/util/widgets/mood_app_text.dart';
 
@@ -12,21 +13,21 @@ class EmptyState extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Container(
-            width: 56,
-            height: 56,
+            width: 56.r,
+            height: 56.r,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               color: Colors.black.withValues(alpha: 0.06),
             ),
             child: const Icon(Icons.mood_outlined, color: Colors.black54),
           ),
-          const SizedBox(height: 12),
+          12.verticalSpace,
           const KMoodText(
             AppStrings.emptyStateTitle,
             variant: MoodTextVariant.normal,
             style: TextStyle(fontWeight: FontWeight.w700),
           ),
-          const SizedBox(height: 4),
+          4.verticalSpace,
           KMoodText(
             AppStrings.emptyStateMessage,
             variant: MoodTextVariant.small,
