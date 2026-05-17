@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mood_tracker/core/models/mood_type.dart';
 import 'package:mood_tracker/core/providers/mood_notifier.dart';
 import 'package:mood_tracker/util/extension/mood_type_extensions.dart';
+import 'package:mood_tracker/util/widgets/mood_face_widget.dart';
 import 'package:mood_tracker/util/widgets/mood_app_text.dart';
 
 class MoodSelector extends ConsumerWidget {
@@ -31,12 +32,10 @@ class MoodSelector extends ConsumerWidget {
             ),
             child: Column(
               children: [
-                CircleAvatar(
-                  backgroundColor: mood.color.withValues(alpha: 0.2),
-                  child: KMoodText(
-                    mood.initial,
-                    style: const TextStyle(fontWeight: FontWeight.bold),
-                  ),
+                MoodFaceWidget(
+                  mood: mood,
+                  size: 40.spMin,
+                  faceColor: mood.color.withValues(alpha: 0.32),
                 ),
                 const SizedBox(height: 8),
                 KMoodText(
