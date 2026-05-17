@@ -20,6 +20,12 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^6.0.0
+  riverpod_generator:
+  build_runner:
+  hive_generator: 
+  riverpod_lint: 
+  cutom_lint: 
+  
 
 flutter:
   uses-material-design: true
