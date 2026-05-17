@@ -1,4 +1,3 @@
-import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -16,12 +15,7 @@ void main() async {
   await Hive.openBox<MoodEntry>(AppStrings.hiveBox);
   runApp(
     ProviderScope(
-      child: DevicePreview(
-        enabled: true,
-        builder: (context) {
-          return MainApp();
-        },
-      ),
+      child: MainApp(),
     ),
   );
 }
