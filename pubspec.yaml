@@ -24,8 +24,8 @@ dev_dependencies:
   build_runner:
   hive_generator: 
   riverpod_lint: 
-  cutom_lint: 
-  
+  custom_lint: 
+
 
 flutter:
   uses-material-design: true
