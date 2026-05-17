@@ -87,7 +87,7 @@ class HomePage extends ConsumerWidget {
                 ),
                 6.verticalSpace,
                 KMoodText(
-                  'Pick one mood to paint your day.',
+                  AppStrings.pickMoodToPaintDay,
                   variant: MoodTextVariant.small,
                   style: Theme.of(
                     context,

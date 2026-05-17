@@ -27,4 +27,5 @@ class AppStrings {
   static const String tapMoodToStart = 'Tap a mood to start tracking.';
   static const String latestCheckInIsActive = 'Latest check-in is active.';
   static const String currentMood = 'CURRENT MOOD';
+  static const String pickMoodToPaintDay = 'Pick one mood to paint your day.';
 }
