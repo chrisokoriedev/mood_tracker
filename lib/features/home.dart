@@ -64,8 +64,8 @@ class HomePage extends ConsumerWidget {
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-              AppColors.white.withValues(alpha: 0.78),
               activeMood.color.withValues(alpha: 0.24),
+              AppColors.white.withValues(alpha: 0.78),
             ],
           ),
         ),
@@ -158,7 +158,7 @@ class HomePage extends ConsumerWidget {
                     ],
                   ),
                 ),
-                16.verticalSpace,
+                26.verticalSpace,
                 MoodSelector(
                   selectedMood: activeMood,
                   onSelect: (mood) {

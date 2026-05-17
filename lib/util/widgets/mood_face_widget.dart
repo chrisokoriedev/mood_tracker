@@ -8,11 +8,13 @@ class MoodFaceWidget extends StatelessWidget {
     required this.mood,
     this.size = 44,
     this.faceColor,
+    this.strokeColor,
   });
 
   final MoodType mood;
   final double size;
   final Color? faceColor;
+  final Color? strokeColor;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,11 @@ class MoodFaceWidget extends StatelessWidget {
       width: size,
       height: size,
       child: CustomPaint(
-        painter: MoodFacePainter(mood: mood, faceColor: faceColor),
+        painter: MoodFacePainter(
+          mood: mood,
+          faceColor: faceColor,
+          strokeColor: strokeColor ?? const Color(0xFF2F2F2F),
+        ),
       ),
     );
   }
