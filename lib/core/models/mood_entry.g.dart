@@ -18,7 +18,7 @@ class MoodEntryAdapter extends TypeAdapter<MoodEntry> {
     };
     return MoodEntry(
       id: fields[0] as String,
-      mood: fields[1] as String,
+      mood: fields[1] as MoodType,
       date: fields[2] as DateTime,
     );
   }
