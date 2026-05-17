@@ -9,10 +9,15 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
   flutter_riverpod:
+  hooks_riverpod:
+  riverpod:
   riverpod_annotation:
+
   hive:
   hive_flutter:
+  
   intl:
 
 
