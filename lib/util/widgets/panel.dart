@@ -24,10 +24,10 @@ class Panel extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.all(12),
+      padding: EdgeInsets.only(left: 12.sp, right: 12.sp, top: 12.sp),
       decoration: BoxDecoration(
         color: AppColors.white.withValues(alpha: 0.92),
-        borderRadius: BorderRadius.circular(18),
+        borderRadius: BorderRadius.circular(10.r),
         border: Border.all(color: AppColors.black.withValues(alpha: 0.06)),
         boxShadow: [
           BoxShadow(
@@ -41,38 +41,38 @@ class Panel extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           if (removeHeader != true)
-          Row(
-            children: [
-              const KMoodText(
-                'Last 7 moods',
-                variant: MoodTextVariant.normal,
-                style: TextStyle(fontWeight: FontWeight.w800),
-              ),
-              const Spacer(),
-              Container(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 10.spMin,
-                  vertical: 6.spMin,
+            Row(
+              children: [
+                const KMoodText(
+                  'Last 7 moods',
+                  variant: MoodTextVariant.normal,
+                  style: TextStyle(fontWeight: FontWeight.w800),
                 ),
-                decoration: BoxDecoration(
-                  color:
-                      activeMood?.color.withValues(alpha: 0.18) ??
-                      AppColors.black.withValues(alpha: 0.18),
-                  borderRadius: BorderRadius.circular(999),
-                  border: Border.all(
+                const Spacer(),
+                Container(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 10.spMin,
+                    vertical: 6.spMin,
+                  ),
+                  decoration: BoxDecoration(
                     color:
-                        activeMood?.color.withValues(alpha: 0.45) ??
-                        AppColors.black.withValues(alpha: 0.45),
+                        activeMood?.color.withValues(alpha: 0.18) ??
+                        AppColors.black.withValues(alpha: 0.18),
+                    borderRadius: BorderRadius.circular(999),
+                    border: Border.all(
+                      color:
+                          activeMood?.color.withValues(alpha: 0.45) ??
+                          AppColors.black.withValues(alpha: 0.45),
+                    ),
+                  ),
+                  child: KMoodText(
+                    '${entries?.length ?? 0}/7',
+                    variant: MoodTextVariant.small,
+                    style: const TextStyle(fontWeight: FontWeight.w700),
                   ),
                 ),
-                child: KMoodText(
-                  '${entries?.length ?? 0}/7',
-                  variant: MoodTextVariant.small,
-                  style: const TextStyle(fontWeight: FontWeight.w700),
-                ),
-              ),
-            ],
-          ),
+              ],
+            ),
           child,
         ],
       ),

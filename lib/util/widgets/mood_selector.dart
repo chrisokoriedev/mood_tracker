@@ -38,8 +38,8 @@ class MoodSelector extends StatelessWidget {
                   child: AnimatedContainer(
                     duration: const Duration(milliseconds: 280),
                     curve: Curves.easeOutCubic,
-                    width: 60.r,
-                    height: 60.r,
+                    width: 50.r,
+                    height: 50.r,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: isSelected ? mood.color : const Color(0xFFF1F5F9),
@@ -61,7 +61,7 @@ class MoodSelector extends StatelessWidget {
                     child: Center(
                       child: MoodFaceWidget(
                         mood: mood,
-                        size: 46.r,
+                        size: 36.r,
                         faceColor: Colors.transparent,
                         strokeColor: isSelected
                             ? const Color(0xFF0F172A)
