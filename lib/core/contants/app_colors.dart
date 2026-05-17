@@ -11,4 +11,6 @@ final class AppColors {
   static const Color sad = Color(0xFF5C6BC0);
   static const Color excited = Color(0xFFE64A19);
   static const Color anxious = Color(0xFF26A69A);
+  static const Color dark = Color(0xFF0F172A);
+  static const Color dark80 = Color(0xFF334155);
 }

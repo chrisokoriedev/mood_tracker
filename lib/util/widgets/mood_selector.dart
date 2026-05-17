@@ -61,7 +61,7 @@ class MoodSelector extends StatelessWidget {
                     child: Center(
                       child: MoodFaceWidget(
                         mood: mood,
-                        size: 36.r,
+                        size: 36.sp,
                         faceColor: Colors.transparent,
                         strokeColor: isSelected
                             ? const Color(0xFF0F172A)

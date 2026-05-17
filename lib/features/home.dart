@@ -27,13 +27,7 @@ class HomePage extends ConsumerWidget {
       appBar: AppBar(
         centerTitle: true,
         elevation: 0,
-        backgroundColor: AppColors.white.withValues(alpha: 0.12),
-        flexibleSpace: ClipRect(
-          child: BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
-            child: Container(color: Colors.transparent),
-          ),
-        ),
+        backgroundColor: Colors.transparent,
         title: const KMoodText(
           AppStrings.appName,
           variant: MoodTextVariant.header,
@@ -144,7 +138,6 @@ class HomePage extends ConsumerWidget {
                       10.verticalSpace,
                       KMoodText(
                         activeMood.label,
-                        variant: MoodTextVariant.header,
                         style: TextStyle(
                           fontWeight: FontWeight.w800,
                           fontSize: 40.sp,
