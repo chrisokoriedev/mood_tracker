@@ -20,4 +20,7 @@ class AppStrings {
   static const String sadInitial = 'S';
   static const String excitedInitial = 'E';
   static const String anxiousInitial = 'A';
+
+  static const String emptyStateTitle = 'No mood entries yet';
+  static const String emptyStateMessage =  'Tap a mood above to log one.';
 }

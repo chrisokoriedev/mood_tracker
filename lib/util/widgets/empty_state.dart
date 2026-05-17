@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mood_tracker/core/contants/app_strings.dart';
 import 'package:mood_tracker/util/widgets/mood_app_text.dart';
 
 class EmptyState extends StatelessWidget {
@@ -21,13 +22,13 @@ class EmptyState extends StatelessWidget {
           ),
           const SizedBox(height: 12),
           const KMoodText(
-            'No mood entries yet',
+            AppStrings.emptyStateTitle,
             variant: MoodTextVariant.normal,
             style: TextStyle(fontWeight: FontWeight.w700),
           ),
           const SizedBox(height: 4),
           KMoodText(
-            'Tap a mood above to log one.',
+            AppStrings.emptyStateMessage,
             variant: MoodTextVariant.small,
             style: Theme.of(
               context,
