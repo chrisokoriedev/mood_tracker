@@ -24,4 +24,7 @@ class AppStrings {
   static const String emptyStateTitle = 'No mood entries yet';
   static const String emptyStateMessage = 'Tap a mood above to log one.';
   static const String home = 'Home';
+  static const String tapMoodToStart = 'Tap a mood to start tracking.';
+  static const String latestCheckInIsActive = 'Latest check-in is active.';
+  static const String currentMood = 'CURRENT MOOD';
 }

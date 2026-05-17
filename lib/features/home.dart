@@ -120,11 +120,11 @@ class HomePage extends ConsumerWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       KMoodText(
-                        'CURRENT MOOD',
-                        variant: MoodTextVariant.normal,
+                        AppStrings.currentMood,
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
                           fontWeight: FontWeight.w700,
                           letterSpacing: 0.7,
+                          fontSize: 15.spMin,
                           color: AppColors.black54,
                         ),
                       ),
@@ -146,11 +146,12 @@ class HomePage extends ConsumerWidget {
                       2.verticalSpace,
                       KMoodText(
                         entries.isEmpty
-                            ? 'Tap a mood to start tracking.'
-                            : 'Latest check-in is active.',
-                        variant: MoodTextVariant.normal,
+                            ? AppStrings.tapMoodToStart
+                            : AppStrings.latestCheckInIsActive.toUpperCase(),
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
                           color: AppColors.black54,
+                          letterSpacing: 0.7,
+                          fontSize: 15.spMin,
                           fontWeight: FontWeight.w600,
                         ),
                         textAlign: TextAlign.center,
@@ -179,7 +180,10 @@ class HomePage extends ConsumerWidget {
             activeMood: activeMood,
             entries: entries,
             child: entries.isEmpty
-                ? const EmptyState()
+                ? Padding(
+                    padding: EdgeInsets.only(bottom: 10.sp),
+                    child: const EmptyState(),
+                  )
                 : Timeline(entries: entries),
           ),
         ],

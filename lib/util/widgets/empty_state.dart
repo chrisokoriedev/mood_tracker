@@ -10,24 +10,23 @@ class EmptyState extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Column(
+        spacing: 4.spMin,
         mainAxisSize: MainAxisSize.min,
         children: [
           Container(
-            width: 56.r,
-            height: 56.r,
+            width: 36.r,
+            height: 36.r,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               color: Colors.black.withValues(alpha: 0.06),
             ),
             child: const Icon(Icons.mood_outlined, color: Colors.black54),
           ),
-          12.verticalSpace,
           const KMoodText(
             AppStrings.emptyStateTitle,
             variant: MoodTextVariant.normal,
             style: TextStyle(fontWeight: FontWeight.w700),
           ),
-          4.verticalSpace,
           KMoodText(
             AppStrings.emptyStateMessage,
             variant: MoodTextVariant.small,
