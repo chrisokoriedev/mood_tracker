@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mood_tracker/core/contants/app_colors.dart';
 
 class Panel extends StatelessWidget {
   const Panel({super.key, required this.child});
@@ -11,14 +12,14 @@ class Panel extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: Colors.white.withValues(alpha: 0.92),
+        color: AppColors.white.withValues(alpha: 0.92),
         borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: Colors.black.withValues(alpha: 0.06)),
+        border: Border.all(color: AppColors.black.withValues(alpha: 0.06)),
         boxShadow: [
           BoxShadow(
             blurRadius: 16,
             offset: const Offset(0, 8),
-            color: Colors.black.withValues(alpha: 0.05),
+            color: AppColors.black.withValues(alpha: 0.05),
           ),
         ],
       ),

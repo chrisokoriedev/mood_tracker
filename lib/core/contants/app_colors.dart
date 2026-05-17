@@ -3,6 +3,9 @@ import 'dart:ui';
 final class AppColors {
   AppColors._();
 
+  static const Color white = Color(0xFFFFFFFF);
+  static const Color black = Color(0xFF000000);
+  static const Color black54 = Color(0x8A000000);
   static const Color happy = Color(0xFFFFC107);
   static const Color neutral = Color(0xFF607D8B);
   static const Color sad = Color(0xFF5C6BC0);
