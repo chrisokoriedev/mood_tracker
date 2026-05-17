@@ -22,5 +22,6 @@ class AppStrings {
   static const String anxiousInitial = 'A';
 
   static const String emptyStateTitle = 'No mood entries yet';
-  static const String emptyStateMessage =  'Tap a mood above to log one.';
+  static const String emptyStateMessage = 'Tap a mood above to log one.';
+  static const String home = 'Home';
 }
