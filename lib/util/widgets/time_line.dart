@@ -55,7 +55,7 @@ class Timeline extends ConsumerWidget {
           ScrollConfiguration(
             behavior: ScrollConfiguration.of(context).copyWith(
               dragDevices: {
-                PointerDeviceKind.touch,
+                PointerDeviceKind.touch, 
                 PointerDeviceKind.mouse,
                 PointerDeviceKind.trackpad,
               },
