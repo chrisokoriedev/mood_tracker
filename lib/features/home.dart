@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mood_tracker/core/contants/app_colors.dart';
 import 'package:mood_tracker/core/contants/app_strings.dart';
 import 'package:mood_tracker/core/providers/mood_notifier.dart';
 import 'package:mood_tracker/util/widgets/empty_state.dart';
@@ -21,14 +22,13 @@ class HomePage extends ConsumerWidget {
       appBar: AppBar(
         centerTitle: true,
         elevation: 0,
-        backgroundColor: Colors.transparent,
         title: const KMoodText(
           AppStrings.appName,
           variant: MoodTextVariant.header,
         ),
       ),
       body: SafeArea(
-        child: Padding(
+        child: SingleChildScrollView(
           padding: EdgeInsets.all(16.spMin),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -41,9 +41,9 @@ class HomePage extends ConsumerWidget {
               KMoodText(
                 'Pick one mood to log your current state.',
                 variant: MoodTextVariant.small,
-                style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: Colors.black54,
-                ),
+                style: Theme.of(
+                  context,
+                ).textTheme.bodySmall?.copyWith(color: AppColors.black54),
               ),
               14.verticalSpace,
               const Panel(child: MoodSelector()),
@@ -62,7 +62,7 @@ class HomePage extends ConsumerWidget {
                       vertical: 6.spMin,
                     ),
                     decoration: BoxDecoration(
-                      color: Colors.black.withValues(alpha: 0.05),
+                      color: AppColors.black.withValues(alpha: 0.05),
                       borderRadius: BorderRadius.circular(999),
                     ),
                     child: KMoodText(
@@ -74,12 +74,10 @@ class HomePage extends ConsumerWidget {
                 ],
               ),
               12.verticalSpace,
-              Expanded(
-                child: Panel(
-                  child: entries.isEmpty
-                      ? const EmptyState()
-                      : Timeline(entries: entries),
-                ),
+              Panel(
+                child: entries.isEmpty
+                    ? const EmptyState()
+                    : Timeline(entries: entries),
               ),
             ],
           ),

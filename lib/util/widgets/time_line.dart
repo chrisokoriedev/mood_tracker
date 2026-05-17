@@ -17,76 +17,65 @@ class Timeline extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final animatingId = ref.watch(animationNotifierProvider);
 
-    return ListView.separated(
-      scrollDirection: Axis.horizontal,
-      itemCount: entries.length,
-      separatorBuilder: (_, _) => const SizedBox(width: 12),
-      itemBuilder: (context, index) {
-        final entry = entries[index];
+    return Column(
+      children: entries.map((entry) {
         final isAnimating = animatingId == entry.id;
-
-        return InkWell(
-          borderRadius: BorderRadius.circular(16),
-          onTap: () {
-            ref
-                .read(animationNotifierProvider.notifier)
-                .triggerAnimation(entry.id);
-          },
-          child: AnimatedContainer(
-            duration: const Duration(milliseconds: 280),
-            curve: Curves.easeOutCubic,
-            width: 154,
-            transform: isAnimating
-                ? (Matrix4.identity()
-                    ..scaleByDouble(1.06, 1.06, 1.0, 1.0)
-                    ..rotateZ(0.02))
-                : Matrix4.identity(),
-            transformAlignment: Alignment.center,
-            decoration: BoxDecoration(
-              color: AppColors.white,
-              borderRadius: BorderRadius.circular(16),
-              border: Border.all(color: entry.mood.color, width: 1.8),
-              boxShadow: [
-                BoxShadow(
-                  blurRadius: 12,
-                  offset: const Offset(0, 5),
-                  color: entry.mood.color.withValues(alpha: 0.16),
+        return Container(
+          margin: EdgeInsets.symmetric(vertical: 6.h, horizontal: 12.w),
+          padding: EdgeInsets.all(12.spMin),
+          decoration: BoxDecoration(
+            color: entry.mood.color.withValues(alpha: 0.1),
+            borderRadius: BorderRadius.circular(12.r),
+            border: Border.all(color: entry.mood.color, width: 1.5),
+          ),
+          child: Row(
+            children: [
+              Container(
+                width: 40.w,
+                height: 40.w,
+                decoration: BoxDecoration(
+                  color: entry.mood.color,
+                  shape: BoxShape.circle,
                 ),
-              ],
-            ),
-            padding: const EdgeInsets.all(12),
-            child: Column(
-              spacing: 10.spMin,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                CircleAvatar(
-                  radius: 23,
-                  backgroundColor: entry.mood.color.withValues(alpha: 0.2),
+                child: Center(
                   child: KMoodText(
                     entry.mood.initial,
-                    style: const TextStyle(
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16.sp,
                       fontWeight: FontWeight.w700,
-                      fontSize: 18,
                     ),
                   ),
                 ),
-
-                KMoodText(
-                  entry.mood.label,
-                  variant: MoodTextVariant.normal,
-                  style: const TextStyle(fontWeight: FontWeight.w700),
+              ),
+              12.horizontalSpace,
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  KMoodText(
+                    entry.mood.label,
+                    variant: MoodTextVariant.normal,
+                    style: TextStyle(fontWeight: FontWeight.w700),
+                  ),
+                  KMoodText(
+                    DateFormat('MMM d, yyyy - h:mm a').format(entry.date),
+                    variant: MoodTextVariant.small,
+                    style:
+                        Theme.of(context).textTheme.bodySmall?.copyWith(color: AppColors.black54),
+                  ),
+                ],
+              ),
+              const Spacer(),
+              if (isAnimating)
+                SizedBox(
+                  width: 24.w,
+                  height: 24.w,
+                  child: const CircularProgressIndicator(strokeWidth: 2),
                 ),
-                const SizedBox(height: 6),
-                KMoodText(
-                  DateFormat('EEE, d MMM').format(entry.date),
-                  variant: MoodTextVariant.small,
-                  style: const TextStyle(color: AppColors.black54),
-                ),
-              ],
-            ),
+            ],
           ),
         );
-      },
+      }).toList(),
     );
   }
 }

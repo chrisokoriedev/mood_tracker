@@ -4,12 +4,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:mood_tracker/core/contants/app_strings.dart';
 import 'package:mood_tracker/core/models/mood_entry.dart';
+import 'package:mood_tracker/core/models/mood_type.dart';
 import 'package:mood_tracker/features/home.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   Hive.registerAdapter(MoodEntryAdapter());
+  Hive.registerAdapter(MoodTypeAdapter());
   await Hive.openBox<MoodEntry>(AppStrings.hiveBox);
   runApp(const ProviderScope(child: MainApp()));
 }
@@ -24,7 +26,6 @@ class MainApp extends StatelessWidget {
       minTextAdapt: true,
       builder: (_, child) {
         return const MaterialApp(
-          themeMode: ThemeMode.dark,
           debugShowCheckedModeBanner: false,
           home: HomePage(),
         );
