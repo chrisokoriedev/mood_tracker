@@ -33,14 +33,14 @@ class MoodSelector extends StatelessWidget {
               child: AnimatedContainer(
                 duration: const Duration(milliseconds: 260),
                 curve: Curves.easeOutCubic,
-                width: 96.spMin,
+                width: 70.spMin,
                 padding: EdgeInsets.symmetric(
                   vertical: 12.spMin,
                   horizontal: 10.spMin,
                 ),
                 decoration: BoxDecoration(
+                  shape: BoxShape.circle,
                   color: mood.color.withValues(alpha: isSelected ? 0.22 : 0.12),
-                  borderRadius: BorderRadius.circular(14),
                   border: Border.all(
                     color: mood.color.withValues(
                       alpha: isSelected ? 0.85 : 0.45,
@@ -60,7 +60,7 @@ class MoodSelector extends StatelessWidget {
                   children: [
                     MoodFaceWidget(
                       mood: mood,
-                      size: 40.spMin,
+                      size: 30.spMin,
                       faceColor: mood.color.withValues(
                         alpha: isSelected ? 0.42 : 0.28,
                       ),
