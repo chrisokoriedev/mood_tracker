@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:mood_tracker/core/contants/app_strings.dart';
 import 'package:mood_tracker/core/models/mood_entry.dart';
+import 'package:mood_tracker/features/home.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,7 +18,8 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: Scaffold(body: Center(child: Text('Hello World!'))),
+      debugShowCheckedModeBanner: false,
+      home: HomePage(),
     );
   }
 }
