@@ -56,6 +56,7 @@ class HomePage extends ConsumerWidget {
           ),
         ],
       ),
+      
       body: AnimatedContainer(
         duration: const Duration(milliseconds: 360),
         curve: Curves.easeOut,

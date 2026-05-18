@@ -8,7 +8,7 @@ A Flutter web mood journaling app where users can log how they feel, review thei
 
 ## Loom Walkthrough
 
-- Demo URL (replace with your final video): https://www.loom.com/share/your-mood-tracker-demo-id
+- Demo URL (replace with your final video): https://www.loom.com/share/8177fe287cb440f596f8bdda25737966
 
 ## Highlights
 
