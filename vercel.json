@@ -1,6 +1,6 @@
 {
-  "installCommand": "flutter pub get",
-  "buildCommand": "flutter build web --release",
+  "installCommand": "bash scripts/vercel-install.sh",
+  "buildCommand": "bash scripts/vercel-build.sh",
   "outputDirectory": "build/web",
   "rewrites": [
     {
