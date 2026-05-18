@@ -68,99 +68,107 @@ class Timeline extends ConsumerWidget {
               itemBuilder: (context, index) {
                 final entry = entries[index];
                 final isAnimating = animatingId == entry.id;
-                return AnimatedContainer(
-                  duration: const Duration(milliseconds: 280),
-                  curve: Curves.easeOutCubic,
-                  transform: isAnimating
-                      ? (Matrix4.identity()
-                          ..scaleByDouble(1.04, 1.04, 1.0, 1.0)
-                          ..rotateZ(0.012))
-                      : Matrix4.identity(),
-                  transformAlignment: Alignment.center,
-                  width: 300.spMin,
-                  margin: EdgeInsets.symmetric(vertical: 6.h),
-                  padding: EdgeInsets.all(10.spMin),
-                  decoration: BoxDecoration(
-                    color: AppColors.white.withValues(alpha: 0.82),
-                    borderRadius: BorderRadius.circular(12.r),
-                    border: Border.all(
-                      color: entry.mood.color.withValues(alpha: 0.45),
-                      width: 1.2,
+                return InkWell(
+                  borderRadius: BorderRadius.circular(12.r),
+                  onTap: () {
+                    ref
+                        .read(animationNotifierProvider.notifier)
+                        .triggerAnimation(entry.id);
+                  },
+                  child: AnimatedContainer(
+                    duration: const Duration(milliseconds: 280),
+                    curve: Curves.easeOutCubic,
+                    transform: isAnimating
+                        ? (Matrix4.identity()
+                            ..scaleByDouble(1.04, 1.04, 1.0, 1.0)
+                            ..rotateZ(0.012))
+                        : Matrix4.identity(),
+                    transformAlignment: Alignment.center,
+                    width: 300.spMin,
+                    margin: EdgeInsets.symmetric(vertical: 6.h),
+                    padding: EdgeInsets.all(10.spMin),
+                    decoration: BoxDecoration(
+                      color: AppColors.white.withValues(alpha: 0.82),
+                      borderRadius: BorderRadius.circular(12.r),
+                      border: Border.all(
+                        color: entry.mood.color.withValues(alpha: 0.45),
+                        width: 1.2,
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: entry.mood.color.withValues(alpha: 0.12),
+                          blurRadius: 10,
+                          offset: const Offset(0, 4),
+                        ),
+                      ],
                     ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: entry.mood.color.withValues(alpha: 0.12),
-                        blurRadius: 10,
-                        offset: const Offset(0, 4),
-                      ),
-                    ],
-                  ),
-                  child: Row(
-                    children: [
-                      MoodFaceWidget(
-                        mood: entry.mood,
-                        size: 40.spMin,
-                        faceColor: entry.mood.color.withValues(alpha: 0.28),
-                      ),
-                      SizedBox(width: 12.spMin),
-                      Expanded(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                KMoodText(
-                                  entry.mood.label,
-                                  variant: MoodTextVariant.normal,
-                                  style: const TextStyle(
-                                    fontWeight: FontWeight.w800,
-                                    letterSpacing: 0.2,
-                                  ),
-                                ),
-                                Container(
-                                  padding: EdgeInsets.symmetric(
-                                    horizontal: 6.spMin,
-                                    vertical: 2.spMin,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    color: entry.mood.color.withValues(
-                                      alpha: 0.12,
+                    child: Row(
+                      children: [
+                        MoodFaceWidget(
+                          mood: entry.mood,
+                          size: 40.spMin,
+                          faceColor: entry.mood.color.withValues(alpha: 0.28),
+                        ),
+                        SizedBox(width: 12.spMin),
+                        Expanded(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  KMoodText(
+                                    entry.mood.label,
+                                    variant: MoodTextVariant.normal,
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.w800,
+                                      letterSpacing: 0.2,
                                     ),
-                                    borderRadius: BorderRadius.circular(6.r),
                                   ),
-                                  child: KMoodText(
-                                    _getTimeOfDay(entry.date),
-                                    variant: MoodTextVariant.small,
-                                    style: TextStyle(
-                                      fontSize: 8.5.spMin,
-                                      fontWeight: FontWeight.w700,
+                                  Container(
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: 6.spMin,
+                                      vertical: 2.spMin,
+                                    ),
+                                    decoration: BoxDecoration(
                                       color: entry.mood.color.withValues(
-                                        alpha: 0.85,
+                                        alpha: 0.12,
+                                      ),
+                                      borderRadius: BorderRadius.circular(6.r),
+                                    ),
+                                    child: KMoodText(
+                                      _getTimeOfDay(entry.date),
+                                      variant: MoodTextVariant.small,
+                                      style: TextStyle(
+                                        fontSize: 8.5.spMin,
+                                        fontWeight: FontWeight.w700,
+                                        color: entry.mood.color.withValues(
+                                          alpha: 0.85,
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                              ],
-                            ),
-                            4.verticalSpace,
-                            KMoodText(
-                              DateFormat(
-                                'EEE, MMM d • h:mm a',
-                              ).format(entry.date),
-                              variant: MoodTextVariant.small,
-                              style: Theme.of(context).textTheme.bodySmall
-                                  ?.copyWith(
-                                    color: AppColors.black54,
-                                    fontSize: 10.spMin,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                            ),
-                          ],
+                                ],
+                              ),
+                              4.verticalSpace,
+                              KMoodText(
+                                DateFormat(
+                                  'EEE, MMM d • h:mm a',
+                                ).format(entry.date),
+                                variant: MoodTextVariant.small,
+                                style: Theme.of(context).textTheme.bodySmall
+                                    ?.copyWith(
+                                      color: AppColors.black54,
+                                      fontSize: 10.spMin,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 );
               },
